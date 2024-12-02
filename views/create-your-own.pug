@@ -1,0 +1,35 @@
+doctype html
+head
+  title Create Your Own
+  style.
+    body {
+        margin: 0;
+    }
+    #page {
+        background-color: tan;
+        width: 100vw;
+        height: 100vh;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #container {
+        background-color: bisque;
+        width: 60%;
+        height: 75%;
+        display: inherit;
+        border-radius: 20px;
+    }
+#page
+    #container
+        form(method='POST' action='#')
+            input(type='text' placeholder='type your question here')
+            label Add some answer options
+            input(type='text' placeholder='option 1')
+            input(type='text' placeholder='option 2')
+            input(type='text' placeholder='option 3')
+            input(type='text' placeholder='option 4')
+            input(type='text' placeholder='correct answer')
+            input(type='text' placeholder='answer number')
+            button(type='submit') create your question!
