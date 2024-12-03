@@ -1,14 +1,14 @@
 import express from "express"
 const app = express()
 
-import bodyParser from "body-parser"
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.json())
-
 app.set("view engine", "pug")
 app.set("views", "./views")
 
 //              import utility middleware here
+import bodyParser from "body-parser"
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json())
+
 import logReq from "./utilities/log-request-time-&-body.mjs"
 app.use(logReq)
 
@@ -20,17 +20,18 @@ app.use("/quizzes/js-intro", js_intro)
 import user from "./routes/user.mjs"
 app.use("/user", user)
 
+//              base url
 app.get("/", (req, res) => {
 
     const links = [
         {
             href: "/quizzes",
-            rel: "quizzes",
+            // rel: "quizzes",
             type: "GET"
         },
         {
             href: "/user",
-            rel: "user",
+            // rel: "user",
             type: "GET"
         }
     ]
@@ -38,45 +39,48 @@ app.get("/", (req, res) => {
     res.json(links)
 })
 
+//              HATEOAS navigation branch /quizzes
 app.get("/quizzes", (req, res) => {
 
     const links = [
         {
             href: "/quizzes/html-css?hateoas=true",
-            rel: "html-css",
+            // rel: "html-css",
             type: "GET"
         },
         {
             href: "/quizzes/js-intro?hateoas=true",
-            rel: "js-intro",
+            // rel: "js-intro",
             type: "GET"
         }
     ]
     res.json(links)
 })
 
+//              HATEOAS navigation branch /user
 app.get("/user", (req, res) => {
 
     const links = [
         {
             href: "/user/create-quiz",
-            rel: "create-quiz",
+            // rel: "create-quiz",
             type: "GET"
         },
         {
             href: "/user/create-user",
-            rel: "create-user",
+            // rel: "create-user",
             type: "GET"
         },
         {
             href: "/user/your-quiz",
-            rel: "your-quiz",
+            // rel: "your-quiz",
             type: "GET"
         }
     ]
     res.json(links)
 })
 
+//              Listen for client requests
 const port = 3000
 app.listen(port, () => {
     console.log(`Server listening on port: ${port}`)
