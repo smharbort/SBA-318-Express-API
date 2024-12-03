@@ -8,30 +8,21 @@ app.use(express.json())
 app.set("view engine", "pug")
 app.set("views", "./views")
 
-// import utility middleware here
+//              import utility middleware here
 import logReq from "./utilities/log-request-time-&-body.mjs"
 app.use(logReq)
 
-// import routes here
+//              import routes here
 import html_css from "./routes/quizzes/html-css.mjs"
 app.use("/quizzes/html-css", html_css)
 import js_intro from "./routes/quizzes/js-intro.mjs"
 app.use("/quizzes/js-intro", js_intro)
-import create_your_own from "./routes/user/create-your-own.mjs"
-app.use("/user/create-your-own", create_your_own)
-import your_quizzes from "./routes/user/your-quizzes.mjs"
-app.use("/user/your-quizzes", your_quizzes)
-import guide from "./routes/guide.mjs"
-app.use("/guide", guide)
+import user from "./routes/user.mjs"
+app.use("/user", user)
 
 app.get("/", (req, res) => {
 
     const links = [
-        {
-            href: "/guide",
-            rel: "guide",
-            type: "GET"
-        },
         {
             href: "/quizzes",
             rel: "quizzes",
@@ -64,14 +55,26 @@ app.get("/quizzes", (req, res) => {
     res.json(links)
 })
 
-app.get(["/api", "/docs", "/documentation"], (req, res) => {
+app.get("/user", (req, res) => {
 
-    res.redirect("/guide")
-})
-
-app.get(["/create-your-own", "/create", "/your-quizzes", "/my-quizzes"], (req, res) => {
-    
-    res.redirect("/user")
+    const links = [
+        {
+            href: "/user/create-quiz",
+            rel: "create-quiz",
+            type: "GET"
+        },
+        {
+            href: "/user/create-user",
+            rel: "create-user",
+            type: "GET"
+        },
+        {
+            href: "/user/your-quiz",
+            rel: "your-quiz",
+            type: "GET"
+        }
+    ]
+    res.json(links)
 })
 
 const port = 3000

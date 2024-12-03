@@ -5,7 +5,7 @@
     / quizzes   / html-css
                 / js-intro
 
-    / users     / create-your-own   --> form with question & answer options input fields
+    / users     / create-your-own --> form with question & answer options input fields
                 / view-created
                 / your-quiz
 
