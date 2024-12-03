@@ -1,8 +1,8 @@
 import express from "express"
 const router = express.Router()
 
-import users from "../data/users.mjs"
-import { User, Question } from "../classes/users-structure.mjs"
+// import users from "../data/users.mjs"
+// import { User, Question } from "../classes/users-structure.mjs"
 
 //              /user
 router
@@ -52,9 +52,9 @@ router
 
         res.render("create-your-own", { userId })
     })
-    .post((req, res) => {
+    .post((req, res) => {                               // STILL WORKING ON POST, PATCH, DELETE FUNCTIONALITY
 
-        if (("category" in req.body) && ("question" in req.body) && ("options" in req.body) && ("correct" in req.body) && ("answNum" in req.body)) {
+        /* if (("category" in req.body) && ("question" in req.body) && ("options" in req.body) && ("correct" in req.body) && ("answNum" in req.body)) {
             
             const userId = req.params.userId
 
@@ -66,7 +66,7 @@ router
                 }
             })
             res.send("not so nice")
-        }
+        } */
     })
 
 export default router
